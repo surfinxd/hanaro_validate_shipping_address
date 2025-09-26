@@ -541,6 +541,7 @@
 
             fetch(WEB_APP_URL, {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json' // 이전과 달리 json으로 명시하는 것이 좋습니다.
                 },
