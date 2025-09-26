@@ -541,9 +541,8 @@
 
             fetch(WEB_APP_URL, {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: {
-                    'Content-Type': 'text/plain'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             })
@@ -552,17 +551,7 @@
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.text(); // 일단 텍스트로 응답을 받습니다.
-            })
-            .then(text => {
-                let data;
-                try {
-                    data = JSON.parse(text); // 텍스트를 JSON으로 파싱합니다.
-                } catch (e) {
-                    // JSON 파싱 실패 시 에러를 던져 catch 블록으로 보냅니다.
-                    throw new Error(`Invalid JSON response from server: ${text}`);
-                }
-                return data;
+                return response.json(); 
             })
             .then(data => {
                 submitBtn.style.display = 'block';
