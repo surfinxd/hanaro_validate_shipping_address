@@ -243,6 +243,30 @@
             font-weight: 600;
             transition: all 0.2s ease;
         }
+        
+        .reset-btn {
+            background-color: #ef4444; /* Tailwind red-500 */
+            color: white;
+            padding: 10px 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-left: auto;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            margin-bottom: 0;
+        }
 
         /* ========================================================== */
         /* 미디어 쿼리: 데스크톱 화면 스타일 (min-width 사용) */
@@ -278,10 +302,13 @@
                 margin-bottom: 24px;
                 padding: 24px;
             }
+            
+            .section-header {
+                margin-bottom: 20px;
+            }
 
             .section-title {
                 font-size: 18px;
-                margin-bottom: 20px;
             }
 
             .section-title::before {
@@ -374,7 +401,10 @@
 
         <form class="form-container" id="deliveryForm">
             <div class="section">
-                <h2 class="section-title">보내는 사람</h2>
+                <div class="section-header">
+                    <h2 class="section-title">보내는 사람</h2>
+                    <button type="button" class="reset-btn" onclick="resetSection('sender')">초기화</button>
+                </div>
                 
                 <div class="form-group">
                     <label for="senderName">보내는 사람</label>
@@ -409,7 +439,10 @@
             </div>
 
             <div class="section">
-                <h2 class="section-title">받는 사람</h2>
+                <div class="section-header">
+                    <h2 class="section-title">받는 사람</h2>
+                    <button type="button" class="reset-btn" onclick="resetSection('receiver')">초기화</button>
+                </div>
                 
                 <div class="form-group">
                     <label for="receiverName">받는 사람</label>
@@ -444,7 +477,10 @@
             </div>
 
             <div class="section">
-                <h2 class="section-title">상품 정보</h2>
+                <div class="section-header">
+                    <h2 class="section-title">상품 정보</h2>
+                    <button type="button" class="reset-btn" onclick="resetSection('item')">초기화</button>
+                </div>
                 
                 <div class="form-group">
                     <label for="itemName">품목</label>
@@ -602,6 +638,26 @@
                 closePopup();
             }
         });
+        
+        // 특정 섹션의 폼 필드를 초기화하는 함수
+        function resetSection(section) {
+            if (section === 'sender') {
+                document.getElementById('senderName').value = '';
+                document.getElementById('senderZipcode').value = '';
+                document.getElementById('senderAddress').value = '';
+                document.getElementById('senderDetailAddress').value = '';
+                document.getElementById('senderPhone').value = '';
+            } else if (section === 'receiver') {
+                document.getElementById('receiverName').value = '';
+                document.getElementById('receiverZipcode').value = '';
+                document.getElementById('receiverAddress').value = '';
+                document.getElementById('receiverDetailAddress').value = '';
+                document.getElementById('receiverPhone').value = '';
+            } else if (section === 'item') {
+                document.getElementById('itemName').value = '';
+                document.getElementById('quantity').value = '1'; // 수량은 기본값 1로 설정
+            }
+        }
     </script>
 </body>
 </html>
